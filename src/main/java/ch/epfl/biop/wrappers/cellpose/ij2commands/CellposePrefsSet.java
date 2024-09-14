@@ -37,7 +37,7 @@ public class CellposePrefsSet implements Command {
     @Parameter(persist = false)
     Boolean useResample = Cellpose.useResample;
 
-    @Parameter(choices = {"0.6", "0.7", "1.0", "2.0"}, persist = false)
+    @Parameter(choices = {"0.6", "0.7", "1.0", "2.0"， "3.0"}, persist = false)
     String version = Cellpose.version;
 
     @Override
