@@ -15,10 +15,15 @@ import org.scijava.plugin.Plugin;
 public class Cellpose_SegmentImgPlusAdvanced implements Command {
 
     public static final String nuclei_model = "nuclei";
-    public static final String cyto_model = "cyto";
-    public static final String cyto2_model = "cyto2";
-    public static final String cyto2_omni_model = "cyto2_omni";
-    public static final String bact_omni_model = "bact_omni";
+    public static final String cyto2_model = "cyto2_cp3";
+    public static final String cyto3_model = "cyto3";
+    public static final String livecell_model = "livecell_cp3";
+    public static final String tissuenet_model = "tissuenet_cp3";
+    public static final String yeast_PhC_model = "yeast_PhC_cp3"; // YEAZ dataset
+    public static final String yeast_BF_model = "yeast_BF_cp3";YEAZ // dataset
+    public static final String bact_phase_model = "bact_phase_cp3"; // omnipose dataset
+    public static final String nuclei_model = "bact_fluor_cp3"; // omnipose dataset
+    public static final String bact_fluor_model = "deepbacs_cp3"; // deepbacs dataset
 
     @Parameter
     ImagePlus imp;
@@ -40,10 +45,15 @@ public class Cellpose_SegmentImgPlusAdvanced implements Command {
     double diam_threshold = 12.0;
 
     @Parameter(choices = {"nuclei",
-            "cyto",
-            "cyto2",
-            "cyto2_omni",
-            "bact_omni",
+                            "cyto2_cp3",
+                            "cyto3",
+                            "livecell_cp3",
+                            "tissuenet_cp3",
+                            "yeast_PhC_cp3",
+                            "yeast_BF_cp3",
+                            "bact_phase_cp3",
+                            "bact_fluor_cp3",
+                            "deepbacs_cp3",
     }, callback = "modelchanged")
     String model;
 
