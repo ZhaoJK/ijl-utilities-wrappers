@@ -22,17 +22,21 @@ import java.util.List;
 public class Cellpose_SegmentImgPlusOwnModelAdvanced implements Command {
 
     public static final String nuclei_model = "nuclei";
-    public static final String cyto_model = "cyto";
-    public static final String cyto2_model = "cyto2";
-    public static final String cyto2_omni_model = "cyto2_omni";
-    public static final String bact_omni_model = "bact_omni";
+    public static final String cyto2_model = "cyto2_cp3";
+    public static final String cyto3_model = "cyto3";
+    public static final String bact_phase_model = "bact_phase_cp3";
+    public static final String bact_fluor_model = "bact_fluor_cp3";
+    public static final String yeast_PhC_model = "yeast_PhC_cp3",
+    public static final String yeast_BF_model = "yeast_BF_cp3",
+    public static final String tissuenet_model = "tissuenet_cp3";
+    public static final String livecell_model = "livecell_cp3";
+    public static final String deepbacs_model = "deepbacs_cp3";
     public static final String own_nuclei_model = "own model nuclei";
     public static final String own_cyto_model = "own model cyto";
     public static final String own_cyto2_model = "own model cyto2";
     public static final String own_cyto2_omni_model = "own model cyto2_omni";
     public static final String own_bact_omni_model = "own model bact_omni";
-    public static final String tissuenet_model = "tissuenet";
-    public static final String livecell_model = "livecell";
+
 
     @Parameter
     ImagePlus imp;
@@ -57,17 +61,20 @@ public class Cellpose_SegmentImgPlusOwnModelAdvanced implements Command {
     File model_path = new File("cellpose");
 
     @Parameter(choices = {nuclei_model,
-            cyto_model,
-            cyto2_model,
-            cyto2_omni_model,
-            bact_omni_model,
-            tissuenet_model,
-            livecell_model,
-            own_nuclei_model,
-            own_cyto_model,
-            own_cyto2_model,
-            own_cyto2_omni_model,
-            own_bact_omni_model}, callback = "modelchanged")
+                          cyto2_model,
+                        cyto3_model,
+                        bact_phase_model,
+                        bact_fluor_model,
+                        yeast_PhC_model,
+                        yeast_BF_model,
+                        tissuenet_model,
+                        livecell_model,
+                        deepbacs_model,
+                        own_nuclei_model,
+                        own_cyto_model,
+                        own_cyto2_model,
+                        own_cyto2_omni_model,
+own_bact_omni_model}, callback = "modelchanged")
     String model;
 
     @Parameter(label = "nuclei_channel (set to 0 if not necessary)")
@@ -105,7 +112,7 @@ public class Cellpose_SegmentImgPlusOwnModelAdvanced implements Command {
         } else if ((model.equals(bact_omni_model))) {
             cyto_channel = 1;
             nuclei_channel = -1;
-        } else if ((model.equals(cyto_model)) || (model.equals(cyto2_model)) || (model.equals(cyto2_omni_model))) {
+        } else if ((model.equals(cyto3_model)) || (model.equals(cyto2_model)) || (model.equals(cyto2_omni_model))) {
             cyto_channel = 1;
             nuclei_channel = 2;
         } else if (model.equals(own_nuclei_model)) {
@@ -154,7 +161,7 @@ public class Cellpose_SegmentImgPlusOwnModelAdvanced implements Command {
             //settings.setChannel2(-1) ;
         } else if ((model.equals(bact_omni_model))) {
             settings.setChannel1(cyto_channel);
-        } else if ((model.equals(cyto_model)) || (model.equals(cyto2_model)) || (model.equals(cyto2_omni_model))) {
+        } else if ((model.equals(cyto3_model)) || (model.equals(cyto2_model)) || (model.equals(cyto2_omni_model))) {
             System.out.println("cyto_channel:" + cyto_channel + ":nuclei_channel:" + nuclei_channel);
             settings.setChannel1(cyto_channel);
             settings.setChannel2(nuclei_channel);
